@@ -1,7 +1,7 @@
 // pages/home-music/index.js
 import { rankingStore } from '../../store/index'
 
-import { getBanners } from '../../service/api_music'
+import { getBanners,getSongMenu  } from '../../service/api_music'
 import queryRect from '../../utils/query-rect'
 import throttle from '../../utils/throttle'
 
@@ -14,7 +14,9 @@ Page({
   data: {
     banners:[],
     swiperHeight:0,
-    recommendSongs: []
+    recommendSongs: [],
+    hotSongMenu:[],
+    recommendSongMenu:[]
 
 
   },
@@ -91,7 +93,7 @@ Page({
   },
 
   getPageData(){
-getBanners().then(res=>{
+    getBanners().then(res=>{
    // setData是同步的还是异步的
       // setData在设置data数据上, 是同步的
       // 通过最新的数据对wxml进行渲染, 渲染的过程是异步
@@ -100,6 +102,13 @@ getBanners().then(res=>{
       // react -> setState是异步
       // this.setState({ name: })
       // console.log(this.state.name)
+})
+getSongMenu().then(res => {
+  this.setData({ hotSongMenu: res.playlists })
+})
+
+getSongMenu("华语").then(res => {
+  this.setData({ recommendSongMenu: res.playlists })
 })
   },
 
