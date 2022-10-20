@@ -16,8 +16,8 @@ Page({
     swiperHeight:0,
     recommendSongs: [],
     hotSongMenu:[],
-    recommendSongMenu:[]
-
+    recommendSongMenu:[],
+    rankings:{0:{},2:{},3:{}}
 
   },
 
@@ -35,6 +35,10 @@ Page({
          const recommendSongs = res.tracks.slice(0, 6)
          this.setData({ recommendSongs })
     })
+    rankingStore.onState("newRanking", this.getRankingHandler(0))
+    rankingStore.onState("originRanking", this.getRankingHandler(2))
+    rankingStore.onState("upRanking", this.getRankingHandler(3))
+
   },
 
   /**
@@ -119,6 +123,22 @@ getSongMenu("华语").then(res => {
       this.setData({swiperHeight:rect.height})
     })
   },
+
+  getRankingHandler(idx){
+    return(res)=>{
+      if(Object.keys(res).length===0) return
+      console.log(idx,res)
+      const name = res.name
+      const coverImgUrl = res.coverImgUrl
+      const playCount = res.playCount
+      const songList = res.tracks.slice(0, 3)
+      const rankingObj = {name, coverImgUrl, playCount, songList}
+      const newRankings = { ...this.data.rankings, [idx]: rankingObj}
+      this.setData({ 
+        rankings: newRankings
+      })
+    }
+  }
 
 })
 
