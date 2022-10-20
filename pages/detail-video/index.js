@@ -6,7 +6,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    mvURLInfo: {},
+    danmuList: [{
+      text: '第 1s 出现的弹幕',
+      color: '#ff0000',
+      time: 1
+    }, {
+      text: '第 3s 出现的弹幕',
+      color: '#ff00ff',
+      time: 3
+    }]
   },
 
   /**
@@ -17,7 +26,7 @@ Page({
   onLoad (options){
     const id=options.id
     getMVURL(id).then(res=>{
-
+      this.setData({ mvURLInfo: res.data })
     })
   },
 
