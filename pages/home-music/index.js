@@ -1,5 +1,5 @@
 // pages/home-music/index.js
-import { rankingStore } from '../../store/index'
+import { rankingStore,rankingMap } from '../../store/index'
 
 import { getBanners,getSongMenu  } from '../../service/api_music'
 import queryRect from '../../utils/query-rect'
@@ -124,6 +124,7 @@ getSongMenu("华语").then(res => {
     })
   },
 
+  //巅峰榜单
   getRankingHandler(idx){
     return(res)=>{
       if(Object.keys(res).length===0) return
@@ -138,7 +139,23 @@ getSongMenu("华语").then(res => {
         rankings: newRankings
       })
     }
-  }
+  },
+  handleMoreClick: function() {
+    this.navigateToDetailSongsPage("hotRanking")
+  },
+
+  handleRankingItemClick: function(event) {
+    const idx = event.currentTarget.dataset.idx
+    const rankingName = rankingMap[idx]
+    this.navigateToDetailSongsPage(rankingName)
+  },
+
+  navigateToDetailSongsPage: function(rankingName) {
+    wx.navigateTo({
+      url: `/pages/detail-songs/index?ranking=${rankingName}&type=rank`,
+    })
+  },
+
 
 })
 
