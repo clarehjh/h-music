@@ -3,7 +3,8 @@ page {
   color: #fff;
 }
 
-.bg-image, .bg-cover {
+.bg-image,
+.bg-cover {
   position: fixed;
   left: 0;
   top: 0;
@@ -13,7 +14,7 @@ page {
 }
 
 .bg-cover {
-  background-color: rgba(0,0,0,.5);
+  background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(30px);
 }
 
@@ -54,7 +55,6 @@ page {
 
 .album .image {
   width: 100%;
-  height: 100%;
   border-radius: 12rpx;
 }
 
@@ -68,7 +68,8 @@ page {
   font-weight: 700;
 }
 
-.music .info .singer, .music .info .alias {
+.music .info .singer,
+.music .info .alias {
   font-size: 26rpx;
   color: #ccc;
   margin: 16rpx 0;
@@ -101,7 +102,6 @@ page {
 .time .current {
   margin-left: 10rpx;
 }
-
 
 /* 操作css */
 .operation {
