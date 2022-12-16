@@ -3,7 +3,6 @@
 // import  {audioContext} from '../../store/index'
 // import {parseLyric } from   '../../utils//parse-lyric.js'
 import { audioContext, playerStore } from '../../store/index'
-
 const playModeNames=['order','repeat','random']
 
 Page({
@@ -90,7 +89,7 @@ Page({
     },
   
     handlePlayBtnClick: function() {
-      playerStore.dispatch("changeMusicPlayStatusAction")
+      playerStore.dispatch("changeMusicPlayStatusAction", !this.data.isPlaying)
     },
   
      // ========================   数据监听   ======================== 
